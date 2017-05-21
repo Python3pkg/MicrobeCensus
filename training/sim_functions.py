@@ -6,27 +6,27 @@
 try:
     import random
 except Exception:
-    print 'Module "random" not installed'; exit()
+    print('Module "random" not installed'); exit()
 
 try:
     import gzip
 except Exception:
-    print 'Module "gzip" not installed'; exit()
+    print('Module "gzip" not installed'); exit()
 
 try:
     import os
 except Exception:
-    print 'Module "os" not installed'; exit()
+    print('Module "os" not installed'); exit()
 
 try:
     import Bio.SeqIO
 except Exception:
-    print 'Module "Bio.SeqIO" not installed'; exit()
+    print('Module "Bio.SeqIO" not installed'); exit()
     
 try:
     import math
 except Exception:
-    print 'Module "math" not installed'; exit()
+    print('Module "math" not installed'); exit()
 
 
 #   define functions
@@ -38,7 +38,7 @@ def read_in_genome(p_genome):
 def parse_genome(genome):
     scaffolds = []
     lengths = []
-    for scaffold in genome.keys():
+    for scaffold in list(genome.keys()):
         scaffolds.append(scaffold)
         lengths.append(len(genome[scaffold]))
     return scaffolds, [length/float(sum(lengths)) for length in lengths], sum(lengths)
@@ -64,7 +64,7 @@ def revcomp(seq):
     return ''.join([comp[base] for base in seq[::-1]])
 
 def amplify_frag(frag_seq, gc_to_bias):
-    gc = find_nearest(compute_gcc(frag_seq), gc_to_bias.keys())
+    gc = find_nearest(compute_gcc(frag_seq), list(gc_to_bias.keys()))
     return random.random() < gc_to_bias[gc]
 
 def compute_gcc(seq):

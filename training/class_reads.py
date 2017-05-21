@@ -67,20 +67,20 @@ for read_length in os.listdir(search_dir):
 			args_list.append(args)
 
 # Print arguments
-print "Threads to use: %s" % threads
-print "Number of search results to classify: %s" % len(args_list)
-print "Output directory: %s" % hits_dir
+print("Threads to use: %s" % threads)
+print("Number of search results to classify: %s" % len(args_list))
+print("Output directory: %s" % hits_dir)
 
 # Classify reads in parallel
 parallel_function(classify_reads, args_list, threads)
 
 # Write gene_fam.map and gene_len.map
 f_out = open(gene_fam_path, 'w')
-for gene, fam in gene2fam.iteritems():
+for gene, fam in gene2fam.items():
 	record = [str(gene), str(fam)]
 	f_out.write('\t'.join(record)+'\n')
 f_out = open(gene_len_path, 'w')
-for gene, length in gene2len.iteritems():
+for gene, length in gene2len.items():
 	record = [str(gene), str(length)]
 	f_out.write('\t'.join(record)+'\n')
 

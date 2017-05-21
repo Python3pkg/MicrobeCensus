@@ -28,7 +28,7 @@ class ReadList(unittest.TestCase):
 	""" check whether file is read into list properly """
 	
 	def setUp(self): # create test files in tmp directory
-		self.exp_values = range(10)
+		self.exp_values = list(range(10))
 		self.dir = tempfile.mkdtemp()
 		self.inpath = os.path.join(self.dir, 'tmp.txt')
 		for i in range(10):

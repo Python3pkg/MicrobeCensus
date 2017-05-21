@@ -8,22 +8,22 @@
 try:
     import sys
 except Exception:
-    print 'Module "sys" not installed'; exit()
+    print('Module "sys" not installed'); exit()
 
 try:
     import os
 except Exception:
-    print 'Module "os" not installed'; exit()
+    print('Module "os" not installed'); exit()
     
 try:
     import optparse
 except Exception:
-    print 'Module "optparse" not installed'; exit()
+    print('Module "optparse" not installed'); exit()
 
 try:
     import datetime
 except Exception:
-    print 'Module "datetime" not installed'; exit()
+    print('Module "datetime" not installed'); exit()
 
 from sim_functions import *
 
@@ -48,10 +48,10 @@ try:
 	paired_end = options.paired_end
 	error_model = options.error_model
 	error_rate = options.error_rate
-except Exception, e:
-    print "Incorrect number of command line arguments."
-    print "\nUsage: python seq_sim.py [-options] <seqfile> <outfile>"
-    print "For all options enter: python seq_sim.py -h"
+except Exception as e:
+    print("Incorrect number of command line arguments.")
+    print("\nUsage: python seq_sim.py [-options] <seqfile> <outfile>")
+    print("For all options enter: python seq_sim.py -h")
     sys.exit()
 
 # check for argument validity

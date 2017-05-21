@@ -30,12 +30,12 @@ coeffs_path = os.path.join(main_dir, 'training/output/coefficients.map')
 preds_path  = os.path.join(main_dir, 'training/output/training_preds.map')
 
 # Store genome & library sizes
-print "Storing genome sizes and library sizes..."
+print("Storing genome sizes and library sizes...")
 genome2size = genome_sizes(genomes_dir)
 library2size = library_sizes(reads_dir)
 
 # Store classification rates
-print "Storing classification rates..."
+print("Storing classification rates...")
 class_rates = store_rates(hits_dir, library2size)
 
 # Build argument list
@@ -55,10 +55,10 @@ for read_length in class_rates:
 # Compute x-validation error for each set of parameters
 # and find optimal parameters
 
-print "Evaluating performance for %s parameters..." % len(args_list)
+print("Evaluating performance for %s parameters..." % len(args_list))
 xval_error = parallel_return_function(xvalidation, args_list, threads)
 
-print "Finding optimal parameters..."
+print("Finding optimal parameters...")
 opt_pars = find_opt_pars(xval_error)
 #	write results
 f_out = open(pars_path, 'w')
@@ -70,7 +70,7 @@ for read_length, fam in sorted(opt_pars.keys()):
 	record = [ str(x) for x in [fam, read_length, aln_cov, max_pid, min_score, aln_stat] ]
 	f_out.write('\t'.join(record)+'\n')
 
-print "Finding proportionality constants..."
+print("Finding proportionality constants...")
 prop_consts = {}
 for read_length, fam in sorted(opt_pars.keys()):
 	min_score, max_pid, aln_cov, rate_type = opt_pars[(read_length, fam)]['pars']
@@ -85,7 +85,7 @@ for read_length, fam in sorted(prop_consts.keys()):
 	record = [read_length + '_' + fam, str(prop_const)]
 	f_out.write('\t'.join(record)+'\n')
 
-print "Getting per-gene AGS predictions..."
+print("Getting per-gene AGS predictions...")
 training_ests = {}
 for read_length, fam in sorted(opt_pars.keys()):
 	min_score, max_pid, aln_cov, rate_type = opt_pars[(read_length, fam)]['pars']

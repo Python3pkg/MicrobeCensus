@@ -55,11 +55,11 @@ for genome_file in os.listdir(genomes_dir):
 		args_list.append(args)
 
 # Print arguments
-print "Threads to use: %s" % threads
-print "Read length: %s" % read_length
-print "Genome coverage: %s" % coverage
-print "Number of libraries: %s" % len(args_list)
-print "Output directory: %s" % reads_dir
+print("Threads to use: %s" % threads)
+print("Read length: %s" % read_length)
+print("Genome coverage: %s" % coverage)
+print("Number of libraries: %s" % len(args_list))
+print("Output directory: %s" % reads_dir)
 
 # Simulate libraries in parallel
 parallel_subprocess(command, args_list, threads)

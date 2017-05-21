@@ -36,7 +36,7 @@ prerap_path  = os.path.join(main_dir, 'microbe_census/bin/prerapsearch_%s_2.15' 
 
 # Build database if necessary
 if not os.path.isfile(rapdb_path):
-	print 'RAPsearch2 database does not exist. Creating...'
+	print('RAPsearch2 database does not exist. Creating...')
 	# cat sequences together in tempfile
 	f_out = open(seqs_path, 'w')
 	gene_fams = os.listdir(gene_fam_dir)
@@ -69,10 +69,10 @@ for read_length in os.listdir(reads_dir):
 			args_list.append(args)
 
 # Print arguments
-print "Threads to use: %s" % threads
-print "Read lengths: %s" % os.listdir(reads_dir)
-print "Number of libraries to search: %s" % len(args_list)
-print "Output directory: %s" % search_dir
+print("Threads to use: %s" % threads)
+print("Read lengths: %s" % os.listdir(reads_dir))
+print("Number of libraries to search: %s" % len(args_list))
+print("Output directory: %s" % search_dir)
 
 # Search libraries in parallel
 parallel_subprocess(command, args_list, threads)

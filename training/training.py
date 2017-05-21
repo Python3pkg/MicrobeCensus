@@ -116,8 +116,8 @@ def xfold_indexes(n, x, i):
 	fold_size = n/x
 	test_start = fold_size * i - fold_size
 	test_stop = test_start + fold_size - 1
-	test_indexes = range(test_start, test_stop + 1)
-	train_indexes = range(n)
+	test_indexes = list(range(test_start, test_stop + 1))
+	train_indexes = list(range(n))
 	for j in test_indexes:
 		train_indexes.remove(j)
 	return train_indexes, test_indexes
@@ -294,7 +294,7 @@ def find_best_hits(hits):
 			best_hits[read_id] = hit
 		elif best_hits[read_id][-1] < score:
 			best_hits[read_id] = hit
-	return best_hits.values()
+	return list(best_hits.values())
 
 def aggregate_hits(hits, fams, gene2len):
 	""" Aggregate hits to each gene family """
@@ -328,7 +328,7 @@ def classify_reads(p_in, p_out, aln_covs, max_pids, min_scores, gene2len, gene2f
 				# find best hits
 				best_hits = find_best_hits(hits_score_filt)
 				# count hits to each marker familes
-				for fam, stats in aggregate_hits(best_hits, fams, gene2len).iteritems():
+				for fam, stats in aggregate_hits(best_hits, fams, gene2len).items():
 					record = [str(x) for x in [fam, aln_cov, max_pid, min_score, stats['hits'], stats['aln'], stats['cov']]]
 					# write results to p_out
 					f_out.write('\t'.join(record)+'\n')
